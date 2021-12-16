@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAlert = false
+    
     var body: some View {
-        AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center)
+        Button("Show Alert") {
+            showingAlert = true
+        }
+        .alert("ImportantMessage", isPresented: $showingAlert) {
+            Button("cancle", role: .cancel) {}
+            Button("destructive", role: .destructive) {}
+        } message: {
+            Text("choose")
+        }
     }
 }
 
