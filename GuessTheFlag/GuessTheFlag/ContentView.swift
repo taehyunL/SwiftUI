@@ -42,10 +42,7 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 5)
+                            flagImage(number)
                         }
                     }
                 }
@@ -55,8 +52,7 @@ struct ContentView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 Spacer()
                 Text(" score : \(score)")
-                    .font(.largeTitle.bold())
-                    .foregroundColor(.white)
+                    .textModifier()
                 Spacer()
             }
             .padding()
@@ -74,6 +70,13 @@ struct ContentView: View {
                 Text("your final score is \(score)")
             }
         }
+    }
+    
+    func flagImage(_ number: Int) -> some View {
+        Image(countries[number])
+            .renderingMode(.original)
+            .clipShape(Capsule())
+            .shadow(radius: 5)
     }
     
     func flagTapped(_ number: Int) {
@@ -106,6 +109,22 @@ struct ContentView: View {
             countries.shuffle()
             correctAnswer = Int.random(in: 0...2)
         }
+    }
+}
+
+struct TextModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.blue)
+            .font(.largeTitle.bold())
+            .padding()
+
+    }
+}
+
+extension View {
+    func textModifier() -> some View {
+        modifier(TextModifier())
     }
 }
 
