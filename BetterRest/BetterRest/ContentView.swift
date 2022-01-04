@@ -30,28 +30,40 @@ struct ContentView: View {
                         .font(.headline)
                     DatePicker("Please enter the time", selection: $wakeUp, displayedComponents: .hourAndMinute)
                         .labelsHidden()
+                        .onChange(of: wakeUp) { _ in
+                            calculateBedTime()
+                        }
                 }
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Desired amount of sleep")
                         .font(.headline)
-                    Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 4...12)
+                    Picker("sleep amount = \(sleepAmount.formatted())", selection: $sleepAmount) {
+                        ForEach(4..<13) {
+                            Text($0, format: .number)
+                        }
+                    }
+                    .onChange(of: sleepAmount) { _ in
+                        calculateBedTime()
+                    }
                 }
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Daliy coffee intake")
                         .font(.headline)
                     Stepper(coffeeAmount == 1 ? "1Cup" : "\(coffeeAmount)Cups", value: $coffeeAmount, in: 1...20)
+                        .onChange(of: coffeeAmount) { _ in
+                            calculateBedTime()
+                        }
                 }
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(alertTitle)")
+                    Text("\(alertMessage)")
+                }
+                .font(.system(size: 20).bold())
+            }
+            .onAppear {
+                calculateBedTime()
             }
             .navigationTitle("BetterRest")
-            .toolbar {
-                Button("Calculate", action: calculateBedTime)
-            }
-            .alert(alertTitle, isPresented: $showingAlert) {
-                Button("OK") { }
-            } message: {
-                Text(alertMessage)
-            }
-            
         }
     }
     
@@ -59,7 +71,7 @@ struct ContentView: View {
         do {
             let config = MLModelConfiguration()
             let model = try SleepCalculator(configuration: config)
-            
+
             let components = Calendar.current.dateComponents([.hour, .minute], from: wakeUp)
             let hour = (components.hour ?? 0) * 60 * 60
             let minute = (components.minute ?? 0) * 60
