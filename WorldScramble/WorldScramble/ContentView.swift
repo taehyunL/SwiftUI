@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        List {
-            Section {
-                Text("row 1")
-                Text("row 2")
-            }
-            
-            ForEach(3..<5) {
-                Text("row \($0)")
+        Text("Hello World")
+            .padding()
+    }
+    
+    func loadFile() {
+        if let fileURL = Bundle.main.url(forResource: "some-file", withExtension: "txt") {
+            if let fileContents = try? String(contentsOf: fileURL) {
+                
             }
         }
     }
