@@ -41,6 +41,9 @@ struct ContentView: View {
             } message: {
                 Text(errorMessage)
             }
+            .toolbar {
+                Button("start Game", action: startGame)
+            }
         }
     }
     
@@ -60,7 +63,7 @@ struct ContentView: View {
         
         guard isReal(word: answer) else {
             wordError(title: "Word not recognized", message: "you can't just make them up, you know!")
-            return 
+            return
         }
         
         withAnimation {
