@@ -14,6 +14,8 @@ struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var countTap = 0
+    @State private var animationAmount = 0.0
+    @State private var animationOn = false
     
     var body: some View {
         ZStack {
@@ -41,9 +43,19 @@ struct ContentView: View {
                     ForEach(0..<3) { number in
                         Button {
                             flagTapped(number)
+                            if number == correctAnswer {
+                                withAnimation {
+                                    animationAmount += 360
+                                    animationOn = true
+                                }
+                            }
                         } label: {
                             flagImage(number)
                         }
+                        .rotation3DEffect(number == correctAnswer ? .degrees(animationAmount) : .zero, axis: (x: 0, y: 1, z:0)
+                        )
+                        .opacity(number != correctAnswer && animationOn == true ? 0.25 : 1 )
+                        .blur(radius: number != correctAnswer && animationOn == true ? 5 : 0)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -87,7 +99,6 @@ struct ContentView: View {
             } else {
                 scoreTitle = "Finish"
             }
-            score += 10
         } else {
             if countTap < 8 {
             scoreTitle = "Wrong!\nthat's the flag of \(countries[number])"
@@ -109,6 +120,7 @@ struct ContentView: View {
             countries.shuffle()
             correctAnswer = Int.random(in: 0...2)
         }
+        animationOn = false
     }
 }
 
