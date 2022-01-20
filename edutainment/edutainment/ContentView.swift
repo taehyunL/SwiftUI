@@ -40,10 +40,11 @@ struct QuestionView: View {
     var question: Int
     
     var body: some View {
-        List(0 ..< question) { _ in
-            HStack {
+        VStack {
+            List(0 ..< question) { _ in
                 Text(" \(practiceNum) * \(Int.random(in: 1...12)) = ? ")
             }
+            Text("Score =")
         }
     }
 }
