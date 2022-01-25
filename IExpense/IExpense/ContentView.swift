@@ -16,6 +16,7 @@ struct ContentView: View {
             List {
                 ForEach(expenses.items) { item in
                     HStack {
+                        if item.amount < 10 {
                             VStack(alignment: .leading) {
                                 Text(item.name)
                                     .font(.headline)
@@ -24,8 +25,31 @@ struct ContentView: View {
 
                             Spacer()
                         
-                            Text(item.amount, format: .currency(code: "USD"))
+                            Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                        } else if item.amount < 100 {
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                    .font(.headline)
+                                Text(item.type)
+                            }
+                            .foregroundColor(.blue)
+
+                            Spacer()
+                        
+                            Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                        } else {
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                    .font(.headline)
+                                Text(item.type)
+                            }
+                            .foregroundColor(.pink)
+
+                            Spacer()
+                        
+                            Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
                         }
+                    }
                 }
                 .onDelete(perform: removeItems)
             }
