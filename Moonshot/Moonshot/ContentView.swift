@@ -28,7 +28,7 @@ struct ContentView: View {
                     "city": "Nashville"
                 }
             }
-            """
+            """//data
             let data = Data(input.utf8)
             
             if let user = try? JSONDecoder().decode(User.self, from: data) {
