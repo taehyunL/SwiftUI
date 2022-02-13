@@ -6,59 +6,73 @@
 //
 
 import SwiftUI
+struct ColorCyclingRectangle: View {
+    var amount = 0.0
+    var steps = 100
 
-struct Checkerboard: Shape {
-    var rows: Int
-    var columns: Int
-    
-    var animatableData: AnimatablePair<Double, Double> {
-        get {
-           AnimatablePair(Double(rows), Double(columns))
-        }
-
-        set {
-            rows = Int(newValue.first)
-            columns = Int(newValue.second)
+    var body: some View {
+        ZStack {
+            ForEach(0..<steps) { value in
+                Rectangle()
+                    .inset(by: Double(value))
+                    .strokeBorder(color(for: value, brightness: 1), lineWidth: 2)
+            }
         }
     }
-    
+
+    func color(for value: Int, brightness: Double) -> Color {
+        var targetHue = Double(value) / Double(steps) + amount
+
+        if targetHue > 1 {
+            targetHue -= 1
+        }
+
+        return Color(hue: targetHue, saturation: 1, brightness: brightness)
+    }
+}
+struct Arrow: Shape {
+    var width: Double
+
+    var animatableData: Double {
+            get { width }
+            set { width = newValue }
+        }
+
     func path(in rect: CGRect) -> Path {
         var path = Path()
 
-        // figure out how big each row/column needs to be
-        let rowSize = rect.height / Double(rows)
-        let columnSize = rect.width / Double(columns)
-
-        // loop over all rows and columns, making alternating squares colored
-        for row in 0..<rows {
-            for column in 0..<columns {
-                if (row + column).isMultiple(of: 2) {
-                    // this square should be colored; add a rectangle here
-                    let startX = columnSize * Double(column)
-                    let startY = rowSize * Double(row)
-
-                    let rect = CGRect(x: startX, y: startY, width: columnSize, height: rowSize)
-                    path.addRect(rect)
-                }
-            }
-        }
-
+        path.move(to: CGPoint(x: rect.midX, y: 0 + width/2))
+        path.addLine(to: CGPoint(x: rect.maxX - width, y: rect.midY))
+        path.addLine(to: CGPoint(x: rect.midX + (rect.maxX - width - rect.midX)/2, y: rect.midY))
+        path.addLine(to: CGPoint(x: rect.midX + (rect.maxX - width - rect.midX)/2, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.midX - (rect.maxX - width - rect.midX)/2, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.midX - (rect.maxX - width - rect.midX)/2, y: rect.midY))
+        path.addLine(to: CGPoint(x: width, y: rect.midY))
+        path.addLine(to: CGPoint(x: rect.midX, y: 0 + width/2))
+        
         return path
     }
 }
 
 struct ContentView: View {
-    @State private var rows = 4
-    @State private var columns = 4
+    @State private var colorCycle = 0.0
+    @State private var width = 50.0
 
     var body: some View {
-        Checkerboard(rows: rows, columns: columns)
-            .onTapGesture {
-                withAnimation(.linear(duration: 3)) {
-                    rows = 8
-                    columns = 16
+        VStack {
+            ColorCyclingRectangle(amount: colorCycle)
+                .frame(width: 300, height: 300)
+
+            Slider(value: $colorCycle)
+            
+            Arrow(width: width)
+                .frame(width: 200, height: 100)
+                .onTapGesture {
+                    withAnimation {
+                        width = Double.random(in: 10...40)
+                    }
                 }
-            }
+        }
     }
 }
 
