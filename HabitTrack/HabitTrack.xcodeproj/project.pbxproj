@@ -11,6 +11,8 @@
 		EA5124DF27BA56E6008E004F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5124DE27BA56E6008E004F /* ContentView.swift */; };
 		EA5124E127BA56E7008E004F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5124E027BA56E7008E004F /* Assets.xcassets */; };
 		EA5124E427BA56E7008E004F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA5124E327BA56E7008E004F /* Preview Assets.xcassets */; };
+		EA5124EB27BA5E6E008E004F /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5124EA27BA5E6E008E004F /* Activity.swift */; };
+		EA5124ED27BA5EC4008E004F /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5124EC27BA5EC4008E004F /* Activities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		EA5124DE27BA56E6008E004F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EA5124E027BA56E7008E004F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA5124E327BA56E7008E004F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EA5124EA27BA5E6E008E004F /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		EA5124EC27BA5EC4008E004F /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				EA5124DC27BA56E6008E004F /* HabitTrackApp.swift */,
 				EA5124DE27BA56E6008E004F /* ContentView.swift */,
+				EA5124EA27BA5E6E008E004F /* Activity.swift */,
+				EA5124EC27BA5EC4008E004F /* Activities.swift */,
 				EA5124E027BA56E7008E004F /* Assets.xcassets */,
 				EA5124E227BA56E7008E004F /* Preview Content */,
 			);
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5124ED27BA5EC4008E004F /* Activities.swift in Sources */,
+				EA5124EB27BA5E6E008E004F /* Activity.swift in Sources */,
 				EA5124DF27BA56E6008E004F /* ContentView.swift in Sources */,
 				EA5124DD27BA56E6008E004F /* HabitTrackApp.swift in Sources */,
 			);
