@@ -9,28 +9,41 @@ import SwiftUI
 
     
 struct ContentView: View {
-    @State private var username = ""
-    @State private var email = ""
-
+    @StateObject var order = Order()
+    
     var body: some View {
-        Form {
-            Section {
-                TextField("Username", text: $username)
-                TextField("Email", text: $email)
-            }
-
-            Section {
-                Button("Create account") {
-                    print("Creating account…")
+        NavigationView {
+            Form {
+                Section {
+                    Picker("select your cupcake", selection: $order.type) {
+                        ForEach(Order.types.indices) {
+                            Text(Order.types[$0])
+                        }
+                    }
+                    Stepper("Number of cakes = \(order.quantity)", value: $order.quantity, in: 3...20)
+                }
+                
+                Section {
+                    Toggle("anyting else?", isOn: $order.specialRequestEnable.animation())
+                    
+                    if order.specialRequestEnable {
+                        Toggle("add extra frosting", isOn: $order.extraFrosting)
+                        Toggle("add extra sprinkles", isOn: $order.addSprinkles)
+                    }
+                }
+                
+                Section {
+                    NavigationLink {
+                        AddressView(order: order)
+                    } label: {
+                        Text("Delivery details")
+                    }
                 }
             }
-            .disabled(disableForm)
+            .navigationTitle("Cupcake Corner")
         }
     }
-    
-    var disableForm: Bool {
-        username.count < 5 || email.count < 5
-    }
+
 }
 
 
