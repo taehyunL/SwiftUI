@@ -14,6 +14,7 @@
 		EA70F9E527BE12C700107367 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA70F9E427BE12C700107367 /* ContentView.swift */; };
 		EA70F9E727BE12C800107367 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA70F9E627BE12C800107367 /* Assets.xcassets */; };
 		EA70F9EA27BE12C800107367 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA70F9E927BE12C800107367 /* Preview Assets.xcassets */; };
+		EA97B69427C4BE860045FFD4 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97B69327C4BE860045FFD4 /* OrderModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		EA70F9E427BE12C700107367 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EA70F9E627BE12C800107367 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA70F9E927BE12C800107367 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EA97B69327C4BE860045FFD4 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				EA54B11E27C26D57001545FE /* CheckOut.swift */,
 				EA54B11C27C26856001545FE /* AddressView.swift */,
 				EA54B11A27C2623E001545FE /* Order.swift */,
+				EA97B69327C4BE860045FFD4 /* OrderModel.swift */,
 				EA70F9E627BE12C800107367 /* Assets.xcassets */,
 				EA70F9E827BE12C800107367 /* Preview Content */,
 			);
@@ -150,6 +153,7 @@
 				EA54B11D27C26856001545FE /* AddressView.swift in Sources */,
 				EA54B11B27C2623E001545FE /* Order.swift in Sources */,
 				EA54B11F27C26D57001545FE /* CheckOut.swift in Sources */,
+				EA97B69427C4BE860045FFD4 /* OrderModel.swift in Sources */,
 				EA70F9E327BE12C700107367 /* CupcakeCornerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
