@@ -13,27 +13,88 @@ class Order: ObservableObject, Codable {
     }
     
     static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
+
+    @Published var orderModel = OrderModel()
     
-    @Published var type = 0
-    @Published var quantity = 3
-    
-    @Published var specialRequestEnable = false {
-        didSet {
-            if !specialRequestEnable {
-                extraFrosting = false
-                addSprinkles = false
-            }
+    var type: Int {
+        get {
+            orderModel.type
+        }
+        set {
+            orderModel.type = newValue
         }
     }
-    @Published var extraFrosting = false
-    @Published var addSprinkles = false
     
-    @Published var name = ""
-    @Published var streetAddress = ""
-    @Published var city = ""
-    @Published var zip = ""
+    var quantity: Int {
+        get {
+            orderModel.quantity
+        }
+        set {
+            orderModel.quantity = newValue
+        }
+    }
     
+    var specialRequestEnable: Bool {
+        get {
+            orderModel.specialRequestEnable
+        }
+        set {
+            orderModel.specialRequestEnable = newValue
+        }
+    }
     
+    var extraFrosting: Bool {
+        get {
+            orderModel.extraFrosting
+        }
+        set {
+            orderModel.extraFrosting = newValue
+        }
+    }
+    
+    var addSprinkles: Bool {
+        get {
+            orderModel.addSprinkles
+        }
+        set {
+            orderModel.addSprinkles = newValue
+        }
+    }
+    var name: String {
+        get {
+            orderModel.name
+        }
+        set {
+            orderModel.name = newValue
+        }
+    }
+    
+    var streetAddress: String {
+        get {
+            orderModel.streetAddress
+        }
+        set {
+            orderModel.streetAddress = newValue
+        }
+    }
+    
+    var city: String {
+        get {
+            orderModel.city
+        }
+        set {
+            orderModel.city = newValue
+        }
+    }
+    
+    var zip: String {
+        get {
+            orderModel.zip
+        }
+        set {
+            orderModel.zip = newValue
+        }
+    }
     
     var hasValidAddress: Bool {
         if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
