@@ -52,7 +52,7 @@ struct CheckOut: View {
         let url = URL(string: "https://reqres.in/api/cupcakes")!
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
+        request.httpMethod = "POST" //이 부분이 주석처리가 된다면 요청이 실패
         
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
