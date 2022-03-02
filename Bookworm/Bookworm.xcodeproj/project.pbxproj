@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA4A006527CF746E00123F8A /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4A006427CF746E00123F8A /* AddBookView.swift */; };
 		EA4F80FF27C66956001ED004 /* BookwormApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4F80FE27C66956001ED004 /* BookwormApp.swift */; };
 		EA4F810127C66956001ED004 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4F810027C66956001ED004 /* ContentView.swift */; };
 		EA4F810327C66957001ED004 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA4F810227C66957001ED004 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA4A006427CF746E00123F8A /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		EA4F80FB27C66956001ED004 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4F80FE27C66956001ED004 /* BookwormApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookwormApp.swift; sourceTree = "<group>"; };
 		EA4F810027C66956001ED004 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				EA4F80FE27C66956001ED004 /* BookwormApp.swift */,
 				EA4F810027C66956001ED004 /* ContentView.swift */,
 				EA4F810C27C68B16001ED004 /* Bookworm.xcdatamodeld */,
+				EA4A006427CF746E00123F8A /* AddBookView.swift */,
 				EA4F810F27C68BA5001ED004 /* DataController.swift */,
 				EA4F810227C66957001ED004 /* Assets.xcassets */,
 				EA4F810427C66957001ED004 /* Preview Content */,
@@ -147,6 +150,7 @@
 				EA4F811027C68BA5001ED004 /* DataController.swift in Sources */,
 				EA4F810E27C68B16001ED004 /* Bookworm.xcdatamodeld in Sources */,
 				EA4F80FF27C66956001ED004 /* BookwormApp.swift in Sources */,
+				EA4A006527CF746E00123F8A /* AddBookView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
