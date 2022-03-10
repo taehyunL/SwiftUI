@@ -25,9 +25,7 @@ struct DetailView: View {
                         .resizable()
                         .scaledToFit()
                 }
-
                 //questionmark.square.fill
-
                 Text(book.genre != "" ? book.genre!.uppercased() : "Default")
                     .font(.caption)
                     .fontWeight(.black)
