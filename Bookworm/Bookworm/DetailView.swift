@@ -16,11 +16,19 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             ZStack(alignment: .bottomTrailing) {
-                Image(book.genre ?? "Fantasy")
-                    .resizable()
-                    .scaledToFit()
-                
-                Text(book.genre?.uppercased() ?? "FANTASY")
+                if book.genre?.count != 0 {
+                    Image(book.genre!)
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    Image(systemName: "questionmark.square.fill")
+                        .resizable()
+                        .scaledToFit()
+                }
+
+                //questionmark.square.fill
+
+                Text(book.genre != "" ? book.genre!.uppercased() : "Default")
                     .font(.caption)
                     .fontWeight(.black)
                     .padding()
@@ -30,11 +38,12 @@ struct DetailView: View {
                     .offset(x: -5, y: -5)
                 
             }
-            Text(book.author ?? "Unknown author")
+//            Text(book.author ?? "Unknown author")
+            Text(book.author != "" ? book.author! : "Unknown author")
                 .font(.title)
                 .foregroundColor(.secondary)
 
-            Text(book.review ?? "No review")
+            Text(book.review != "" ? book.review! : "No review")
                 .padding()
 
             RatingView(rating: .constant(Int(book.rating)))
