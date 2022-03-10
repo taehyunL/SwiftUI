@@ -12,7 +12,11 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     @State private var showingDeleteAlert = false
-    
+    static let dateformat: DateFormatter = {
+          let formatter = DateFormatter()
+           formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+           return formatter
+       }()
     var body: some View {
         ScrollView {
             ZStack(alignment: .bottomTrailing) {
@@ -34,9 +38,9 @@ struct DetailView: View {
                     .background(.black.opacity(0.75))
                     .clipShape(Capsule())
                     .offset(x: -5, y: -5)
-                
+
             }
-//            Text(book.author ?? "Unknown author")
+
             Text(book.author != "" ? book.author! : "Unknown author")
                 .font(.title)
                 .foregroundColor(.secondary)
@@ -46,6 +50,10 @@ struct DetailView: View {
 
             RatingView(rating: .constant(Int(book.rating)))
                 .font(.largeTitle)
+
+            Text("saved date : \(book.date!, formatter: DetailView.dateformat)")
+                .padding()
+            
         }
         .alert("Delete book", isPresented: $showingDeleteAlert) {
             Button("Delete", role: .destructive, action: deleteBook)
@@ -63,10 +71,10 @@ struct DetailView: View {
         .navigationTitle(book.title ?? "Unknown Book")
         .navigationBarTitleDisplayMode(.inline)
     }
-    
+
     func deleteBook() {
         moc.delete(book)
-        
+
         try? moc.save()
     }
 }

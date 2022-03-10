@@ -15,6 +15,7 @@ struct AddBookView: View {
     @State private var rating = 3
     @State private var genre = ""
     @State private var review = ""
+
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     var body: some View {
         NavigationView {
@@ -46,7 +47,7 @@ struct AddBookView: View {
                         newBook.rating = Int16(rating)
                         newBook.genre = genre
                         newBook.review = review
-
+                        newBook.date = Date.now
                         try? moc.save()
                         
                         dismiss()
@@ -58,8 +59,8 @@ struct AddBookView: View {
     }
 }
 
-struct AddBookView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddBookView()
-    }
-}
+//struct AddBookView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddBookView()
+//    }
+//}
