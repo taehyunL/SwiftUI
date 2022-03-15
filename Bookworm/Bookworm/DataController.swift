@@ -20,4 +20,32 @@ class DataController: ObservableObject {
             self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         }
     }
+    
+    func saveCandy(name: String, shortName: String, fullName: String) {
+        let candy = Candy(context: container.viewContext)
+        
+        candy.name = name
+        
+        candy.origin = Country(context: container.viewContext)
+        
+        candy.origin?.shortName = shortName
+        candy.origin?.fullName = fullName
+        
+        do {
+            try container.viewContext.save()
+        } catch {
+            print("Failed \(error)")
+        }
+    }
+    
+    func getAllCountries() -> [Country] {
+        let fetchRequest = Country.fetchRequest()
+        
+        do {
+            return try container.viewContext.fetch(fetchRequest)
+        } catch {
+            return []
+        }
+    }
+    
 }

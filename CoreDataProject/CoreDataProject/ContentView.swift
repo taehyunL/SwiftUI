@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var countries: FetchedResults<Country>
+//    @Environment(\.managedObjectContext) var moc
+//    @FetchRequest(sortDescriptors: []) var countries: FetchedResults<Country>
+    let coreDM: DataController
+    @State var countries: [Country] = []
+    
+    func populateCountries() {
+        countries = coreDM.getAllCountries()
+    }
     
     var body: some View {
         VStack {
@@ -22,40 +28,33 @@ struct ContentView: View {
                     }
                 }
             }
-
+            
             Button("Add") {
-                let candy1 = Candy(context: moc)
-                candy1.name = "Mars"
-                candy1.origin = Country(context: moc)
-                candy1.origin?.shortName = "UK"
-                candy1.origin?.fullName = "United Kingdom"
-
-                let candy2 = Candy(context: moc)
-                candy2.name = "KitKat"
-                candy2.origin = Country(context: moc)
-                candy2.origin?.shortName = "UK"
-                candy2.origin?.fullName = "United Kingdom"
-
-                let candy3 = Candy(context: moc)
-                candy3.name = "Twix"
-                candy3.origin = Country(context: moc)
-                candy3.origin?.shortName = "UK"
-                candy3.origin?.fullName = "United Kingdom"
-
-                let candy4 = Candy(context: moc)
-                candy4.name = "Toblerone"
-                candy4.origin = Country(context: moc)
-                candy4.origin?.shortName = "CH"
-                candy4.origin?.fullName = "Switzerland"
-
-                try? moc.save()
+                coreDM.saveCandy(name: "Mars", shortName: "UK", fullName: "United Kingdom")
+                
+                coreDM.saveCandy(name: "KitKat", shortName: "UK", fullName: "United Kingdom")
+                
+                coreDM.saveCandy(name: "Twix", shortName: "UK", fullName: "United Kingdom")
+                
+                coreDM.saveCandy(name: "gana", shortName: "UK", fullName: "United Kingdom")
+                
+                coreDM.saveCandy(name: "Toblerone", shortName: "CH", fullName: "Switzerland")
+                
+                coreDM.saveCandy(name: "Toblerone2", shortName: "CH", fullName: "Switzerland")
             }
+            
+            Button("View") {
+                populateCountries()
+            }
+        }
+        .onAppear{
+            populateCountries()
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(coreDM: DataController())
     }
 }
