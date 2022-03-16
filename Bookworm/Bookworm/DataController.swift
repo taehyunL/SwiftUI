@@ -25,11 +25,17 @@ class DataController: ObservableObject {
         let candy = Candy(context: container.viewContext)
         
         candy.name = name
+//        candy.origin = Country(context: container.viewContext)
         
-        candy.origin = Country(context: container.viewContext)
+        let country = Country(context: container.viewContext)
         
-        candy.origin?.shortName = shortName
-        candy.origin?.fullName = fullName
+        country.shortName = shortName
+        country.fullName = fullName
+        
+        country.addToCandy(candy)
+        
+//        candy.origin?.shortName = shortName
+//        candy.origin?.fullName = fullName
         
         do {
             try container.viewContext.save()
