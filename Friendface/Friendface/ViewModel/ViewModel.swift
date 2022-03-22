@@ -26,7 +26,6 @@ class ViewModel: ObservableObject {
                 return
             }
             
-            
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
 
@@ -40,4 +39,6 @@ class ViewModel: ObservableObject {
         }
         .resume()
     }
+    
+    
 }

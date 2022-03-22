@@ -9,6 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var vm = ViewModel()
+    @StateObject var coreDM = DataController()
+    
+    @State var cachedUser: [CachedUser] = []
+    
+    func populateCachedUserData() {
+        cachedUser = coreDM.getAllUsers()
+    }
     
     var body: some View {
         NavigationView {
@@ -27,10 +34,15 @@ struct ContentView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                     }
-
+                    .onAppear {
+                        coreDM.saveData(user: user)
+                    }
                 }
             }
             .navigationTitle("")
+        }
+        .onAppear {
+            populateCachedUserData()
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailView: View {
     let user: User
     
+    
     var body: some View {
         ScrollView {
             ForEach(user.friends) { friend in
