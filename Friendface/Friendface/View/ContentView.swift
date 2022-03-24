@@ -34,9 +34,9 @@ struct ContentView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                     }
-                    .onAppear {
-                        coreDM.saveData(user: user)
-                    }
+//                    .onAppear {
+//                        coreDM.saveData(user: user)
+//                    }
                 }
             }
             .navigationTitle("")
