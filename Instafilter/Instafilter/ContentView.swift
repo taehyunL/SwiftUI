@@ -4,8 +4,6 @@
 //
 //  Created by 이태현 on 2022/03/24.
 //
-import CoreImage
-import CoreImage.CIFilterBuiltins
 import SwiftUI
 
 struct ContentView: View {
@@ -22,6 +20,13 @@ struct ContentView: View {
             Button("Select Image") {
                showingImagePicker = true
             }
+            
+            Button("Save Image") {
+                guard let inputImage = inputImage else { return }
+                
+                let imageSaver = ImageSaver()
+                imageSaver.writeToPhotoAlbum(image: inputImage)
+            }
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $inputImage)
@@ -32,6 +37,8 @@ struct ContentView: View {
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
+        
+        UIImageWriteToSavedPhotosAlbum(inputImage, nil, nil, nil)
     }
 }
 
